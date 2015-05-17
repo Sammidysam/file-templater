@@ -2,9 +2,9 @@ module FileTemplater
 	class FileActions
 		class << self
 			def create_hub_if_necessary
-				Dir.mkdir(HUB) unless Dir.exists?(HUB)
-				Dir.mkdir(TEMPLATE_HUB) unless Dir.exists?(TEMPLATE_HUB)
-				Dir.mkdir(BINDINGS_HUB) unless Dir.exists?(BINDINGS_HUB)
+				HUBS.each do |k, v|
+					Dir.mkdir(v) unless Dir.exists?(v)
+				end
 			end
 
 			def add_template(path)
