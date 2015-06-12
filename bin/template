@@ -5,3 +5,7 @@ lib_directory = File.expand_path(File.join(File.dirname(__FILE__), "..", "lib"))
 $LOAD_PATH.unshift(lib_directory) unless $LOAD_PATH.map { |directory| File.expand_path(directory) }.include?(lib_directory)
 
 require "file_templater"
+
+FileTemplater::FileActions.create_hub_if_necessary
+
+handler = FileTemplater::OptionsHandler.new(ARGV)
