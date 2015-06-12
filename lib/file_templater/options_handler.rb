@@ -1,5 +1,5 @@
 module FileTemplater
-	class OptionParser
+	class OptionsHandler
 		# The template to load.
 		attr_reader :template
 		# The library to use.
