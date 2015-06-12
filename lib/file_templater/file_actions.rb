@@ -12,6 +12,11 @@ module FileTemplater
 				FileUtils.copy_entry(expanded, File.join(HUBS[:template], File.basename(expanded)))
 			end
 
+			# Consider securing this to only delete items in the template hub.
+			def remove_template(path)
+				FileUtils.remove_dir(File.join(HUBS[:template], path))
+			end
+
 			def list_templates
 				Dir.entries(HUBS[:template]).reject { |d| d == "." || d == ".." }
 			end
