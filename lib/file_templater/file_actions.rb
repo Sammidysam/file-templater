@@ -11,6 +11,10 @@ module FileTemplater
 				expanded = File.expand_path(path)
 				FileUtils.copy_entry(expanded, File.join(HUBS[:template], File.basename(expanded)))
 			end
+
+			def list_templates
+				Dir.entries(HUBS[:template]).reject { |d| d == "." || d == ".." }
+			end
 		end
 	end
 end
