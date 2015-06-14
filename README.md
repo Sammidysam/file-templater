@@ -46,6 +46,7 @@ It can take a single argument or multiple arguments, and files and folders being
 A file ending in `.rb` is expected as the argument, though a list of files can be given as well.
 To be used with a template, the file name minus the extension must match the template folder name or template file name minus its extension **exactly**.
 If the names do not match, the binding will not be loaded for use with the template source, which could cause errors upon loading the template.
+As well as that, the class name inside of the binding file must follow the UpperCamelCase conventions.
 For more information about formats of binding files, read the bindings section below.
 
 `-r` removes the template and/or the binding of the given argument or list of arguments.
@@ -63,6 +64,8 @@ This is useful for loading a template that contains ERB code.
 `-c` will copy a template and binding of its argument or a list of arguments to the current directory.
 This is useful for editing a template; you can copy it with `-c`, make modifications, remove it from the directory with `-r`, then add it again with `-a` and `-b`.
 Rather than when loading a template, this command will copy the template directory, not its contents, into the current directory.
+Note that the binding file will contain more code that you inputted it as, as code will be added to the binding file as you are adding it.
+See the binding section below to see what code is added.
 
 ## Bindings
 
@@ -80,3 +83,8 @@ end
 ```
 
 Then, when you load the template `gem`, you can use the variable `@name` in your templates.
+
+When a binding file like this is added, the code is changed to make it function within the program better.
+The entire code is wrapped within a `module Bindings` at the beginning and the corresponding `end` at the end, and the class statement goes from `class X` to `class X < Binding`, with `X` changing to be the name of the class.
+The `Binding` class handles adding a `get_binding` method to all of the binding classes, which allows what ERB wants to handle to be retrieved easily.
+Putting all of the binding classes within a module simply prevents as many naming conflicts when the classes are loaded.
