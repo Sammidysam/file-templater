@@ -46,9 +46,7 @@ It can take a single argument or multiple arguments, and files and folders being
 A file ending in `.rb` is expected as the argument, though a list of files can be given as well.
 To be used with a template, the file name minus the extension must match the template folder name or template file name minus its extension **exactly**.
 If the names do not match, the binding will not be loaded for use with the template source, which could cause errors upon loading the template.
-Nothing special needs to be added to a binding file, as the program will automatically add the necessary repetitive code to the file to make it work within the program better.
-The constructor of the binding file will be passed the arguments that are passed to the program without any switches.
-This allows for command-line arguments changing the outputs of templates.
+For more information about formats of binding files, read the bindings section below.
 
 `-r` removes the template and/or the binding of the given argument or list of arguments.
 The `.rb` extension will be automatically added to the argument(s) when finding the binding file.
@@ -65,3 +63,20 @@ This is useful for loading a template that contains ERB code.
 `-c` will copy a template and binding of its argument or a list of arguments to the current directory.
 This is useful for editing a template; you can copy it with `-c`, make modifications, remove it from the directory with `-r`, then add it again with `-a` and `-b`.
 Rather than when loading a template, this command will copy the template directory, not its contents, into the current directory.
+
+## Bindings
+
+Nothing special needs to be added to a binding file, as the program will automatically add the necessary repetitive code to the file to make it work within the program better.
+The constructor of the binding file will be passed the arguments that are passed to the program without any switches.
+This allows for command-line arguments changing the outputs of templates.
+An example of a binding file is below.
+
+```ruby
+class Gem
+	def initialize(name)
+		@name = name.capitalize
+	end
+end
+```
+
+Then, when you load the template `gem`, you can use the variable `@name` in your templates.
