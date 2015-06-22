@@ -18,11 +18,16 @@ module FileTemplater
 			end
 
 			def list_templates
-				Dir.entries(HUBS[:template]).reject { |d| d == "." || d == ".." }
+				unique_directory_list(HUBS[:template])
 			end
 
 			def list_bindings
-				Dir.entries(HUBS[:binding]).reject { |d| d == "." || d == ".." }
+				unique_directory_list(HUBS[:binding])
+			end
+
+			private
+			def unique_directory_list(path)
+				Dir.entries(path).reject { |d| d == "." || d == ".." }
 			end
 		end
 	end
