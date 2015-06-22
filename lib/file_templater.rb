@@ -1,4 +1,5 @@
 require "erb"
+require "optparse"
 
 require "file_templater/variables"
 require "file_templater/file_actions"
