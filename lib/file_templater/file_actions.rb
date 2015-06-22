@@ -20,6 +20,10 @@ module FileTemplater
 				FileUtils.remove_file(File.join(HUBS[:binding], path))
 			end
 
+			def list
+				list_templates + list_bindings
+			end
+
 			def list_templates
 				unique_directory_list(HUBS[:template])
 			end
