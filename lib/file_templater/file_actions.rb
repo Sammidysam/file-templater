@@ -20,6 +20,10 @@ module FileTemplater
 			def list_templates
 				Dir.entries(HUBS[:template]).reject { |d| d == "." || d == ".." }
 			end
+
+			def list_bindings
+				Dir.entries(HUBS[:binding]).reject { |d| d == "." || d == ".." }
+			end
 		end
 	end
 end
