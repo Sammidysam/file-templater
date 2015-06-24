@@ -67,6 +67,19 @@ Rather than when loading a template, this command will copy the template directo
 Note that the binding file will contain more code that you inputted it as, as code will be added to the binding file as you are adding it.
 See the binding section below to see what code is added.
 
+## Templates
+
+Templates can either be one file or multiple files.
+The files can either be directly copied (have no `.erb` suffix) or be ERB templates (have a `.erb` suffix).
+If a `.erb` suffix is present, it will be removed when the file is finished being copied and transformed.
+Binding files are used to manage how data is provided to template.
+Read the section about them below to learn more about them.
+
+Files can have variable names as well.
+For a file to have a variable filled in its name, include the name of the variable encapsulated by `{{}}`.
+For example, if my binding provides a variable `PARTY_NAME` and I want to create a file of `PARTY_NAME` with an extension `.txt`, I would name the file within the template `{{PARTY_NAME}}.txt`.
+It will then change its name based on the parameters given to the program.
+
 ## Bindings
 
 Nothing special needs to be added to a binding file, as the program will automatically add the necessary repetitive code to the file to make it work within the program better.
