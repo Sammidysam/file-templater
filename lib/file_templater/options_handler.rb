@@ -78,12 +78,8 @@ module FileTemplater
 
 				case command
 				when :add
-					if arguments.is_a?(Array)
-						arguments.each do |ar|
-							FileActions.add_template(ar)
-						end
-					else
-						FileActions.add_template(arguments)
+					arguments.each do |ar|
+						FileActions.add_template(ar)
 					end
 				end
 			end
