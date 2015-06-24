@@ -32,6 +32,15 @@ module FileTemplater
 				unique_directory_list(HUBS[:binding])
 			end
 
+			# Requires all of the .rb files in HUBS[:binding].
+			def require_all_bindings
+				unique_directory_list(HUBS[:binding]).each do |f|
+					if f.end_with?(".rb")
+						require File.join(HUBS[:binding], f.chomp(".rb"))
+					end
+				end
+			end
+
 			private
 			def unique_directory_list(path)
 				Dir.entries(path).reject { |d| d == "." || d == ".." }
