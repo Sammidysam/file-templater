@@ -67,6 +67,9 @@ Rather than when loading a template, this command will copy the template directo
 Note that the binding file will contain more code that you inputted it as, as code will be added to the binding file as you are adding it.
 See the binding section below to see what code is added.
 
+Any arguments outside of those provided as part of a switch become passed to the binding file associated with the loaded template.
+See the section on bindings below to find out more information about how using those arguments works.
+
 ## Templates
 
 Templates can either be one file or multiple files.
