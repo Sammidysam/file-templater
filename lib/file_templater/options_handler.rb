@@ -71,6 +71,22 @@ module FileTemplater
 		end
 
 		def process_actions
+			@actions.each do |a|
+				command = a.first
+				# :( no .second in pure Ruby
+				arguments = a[1]
+
+				case command
+				when :add
+					if arguments.is_a?(Array)
+						arguments.each do |ar|
+							FileActions.add_template(ar)
+						end
+					else
+						FileActions.add_template(arguments)
+					end
+				end
+			end
 		end
 	end
 end
