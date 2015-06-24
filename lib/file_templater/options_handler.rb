@@ -81,6 +81,10 @@ module FileTemplater
 					arguments.each do |ar|
 						FileActions.add_template(ar)
 					end
+				when :remove
+					arguments.each do |ar|
+						FileActions.remove(ar)
+					end
 				end
 			end
 		end
