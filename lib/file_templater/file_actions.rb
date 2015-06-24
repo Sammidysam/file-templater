@@ -14,10 +14,10 @@ module FileTemplater
 
 			def remove(path)
 				# Remove the associated template.
-				FileUtils.remove_dir(File.join(HUBS[:template], path))
+				FileUtils.remove_dir(File.join(HUBS[:template], path), true)
 
 				# Remove the associated binding.
-				FileUtils.remove_file(File.join(HUBS[:binding], path))
+				FileUtils.remove_file(File.join(HUBS[:binding], path + ".rb"), true)
 			end
 
 			def list
