@@ -11,3 +11,4 @@ FileTemplater::FileActions.create_hub_if_necessary
 FileTemplater::FileActions.require_all_bindings
 
 handler = FileTemplater::OptionsHandler.new(ARGV)
+handler.process_actions

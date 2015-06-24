@@ -69,5 +69,8 @@ module FileTemplater
 			parser.parse!(argv)
 			@arguments = argv
 		end
+
+		def process_actions
+		end
 	end
 end
