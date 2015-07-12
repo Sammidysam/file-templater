@@ -21,6 +21,10 @@ module FileTemplater
 			end
 
 			def list
+				# In our list, we want to indicate if a template does not have a corresponding binding.
+				# As a result, we should list like so:
+				# Template    Binding
+				# example     example.rb
 				list_templates + list_bindings
 			end
 
