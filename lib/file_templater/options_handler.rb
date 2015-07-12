@@ -85,6 +85,8 @@ module FileTemplater
 					arguments.each do |ar|
 						FileActions.remove(ar)
 					end
+				when :list
+					puts FileActions.list
 				end
 			end
 		end
