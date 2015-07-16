@@ -25,7 +25,26 @@ module FileTemplater
 				# As a result, we should list like so:
 				# Template    Binding
 				# example     example.rb
-				list_templates + list_bindings
+				Terminal::Table.new do |t|
+					templates = list_templates
+					bindings = list_bindings
+
+					# table header
+					t.add_row ["Template", "Binding"]
+					t.add_separator
+
+					templates.each do |tm|
+						bind = tm + ".rb"
+						bind = nil unless bindings.include?(bind)
+						bindings.delete(bind) if bind
+
+						t.add_row [tm, bind]
+					end
+
+					bindings.each do |b|
+						t.add_row [nil, b]
+					end
+				end
 			end
 
 			def list_templates
