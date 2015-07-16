@@ -42,6 +42,7 @@ If the template is a folder, the contents of the folder, but not the folder itse
 Files or folders can be added using this switch.
 It can take a single argument or multiple arguments, and files and folders being added are expected to be in the current directory.
 
+*remove this command*
 `-b` is used to add a binding to the bindings directory.
 A file ending in `.rb` is expected as the argument, though a list of files can be given as well.
 To be used with a template, the file name minus the extension must match the template folder name or template file name minus its extension **exactly**.
