@@ -79,7 +79,11 @@ module FileTemplater
 				case command
 				when :add
 					arguments.each do |ar|
-						FileActions.add_template(ar)
+						FileActions.add(ar, :template)
+					end
+				when :binding
+					arguments.each do |ar|
+						FileActions.add(ar, :binding)
 					end
 				when :remove
 					arguments.each do |ar|

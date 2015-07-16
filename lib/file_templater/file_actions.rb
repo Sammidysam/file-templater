@@ -7,9 +7,9 @@ module FileTemplater
 				end
 			end
 
-			def add_template(path)
+			def add(path, hub)
 				expanded = File.expand_path(path)
-				FileUtils.copy_entry(expanded, File.join(HUBS[:template], File.basename(expanded)))
+				FileUtils.copy_entry(expanded, File.join(HUBS[hub], File.basename(expanded)))
 			end
 
 			def remove(path)
