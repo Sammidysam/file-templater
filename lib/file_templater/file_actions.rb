@@ -78,6 +78,10 @@ module FileTemplater
 				end
 			end
 
+			def combined_list
+				list_templates + list_bindings
+			end
+
 			def list_templates
 				unique_directory_list(HUBS[:template])
 			end
