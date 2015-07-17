@@ -7,9 +7,24 @@ module FileTemplater
 				end
 			end
 
-			def add(path, hub)
+			def add(path)
 				expanded = File.expand_path(path)
-				FileUtils.copy_entry(expanded, File.join(HUBS[hub], File.basename(expanded)))
+				# Three cases of what we are adding can arise:
+				# file of the template being added
+				# directory of the template being added
+				# binding of the template being added
+				type = File.directory?(expanded) ? :directory : (expanded.end_with?(".rb") ? :binding : :file)
+				hub = (type == :binding ? :binding : :template)
+
+				# If the file we are adding is a single file,
+				# make a directory and put the file in it.
+				if type == :file
+					expanded_sans_extension = File.join(HUBS[hub], File.basename(expanded, ".*"))
+					FileUtils.mkdir(expanded_sans_extension)
+					FileUtils.copy_entry(expanded, File.join(expanded_sans_extension, File.basename(expanded)))
+				else
+					FileUtils.copy_entry(expanded, File.join(HUBS[hub], File.basename(expanded)))
+				end
 			end
 
 			def remove(path)

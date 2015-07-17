@@ -20,14 +20,10 @@ module FileTemplater
 					@actions << [:template, t]
 				end
 
-				o.on("-a", "--add TEMPLATE", Array,
-					 "Add TEMPLATE to the template directory") do |t|
+				o.on("-a", "--add THING", Array,
+					 "Add THING, a template or a binding,",
+					 "to the template directory") do |t|
 					@actions << [:add, t]
-				end
-
-				o.on("-b", "--binding BINDING", Array,
-					 "Add BINDING to the binding directory") do |b|
-					@actions << [:binding, b]
 				end
 
 				o.on("-r", "--remove TEMPLATE", Array,
@@ -78,11 +74,7 @@ module FileTemplater
 				case command
 				when :add
 					arguments.each do |ar|
-						FileActions.add(ar, :template)
-					end
-				when :binding
-					arguments.each do |ar|
-						FileActions.add(ar, :binding)
+						FileActions.add(ar)
 					end
 				when :remove
 					arguments.each do |ar|
