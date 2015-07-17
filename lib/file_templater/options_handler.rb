@@ -73,7 +73,6 @@ module FileTemplater
 		def process_actions
 			@actions.each do |a|
 				command = a.first
-				# :( no .second in pure Ruby
 				arguments = a[1]
 
 				case command
