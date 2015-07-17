@@ -7,3 +7,5 @@ Currently, if a binding has broken (such as syntax error) code, it will break th
 This will be bad, because a user cannot remove the binding.
 
 Make `-r` allow being given a `.rb` so that it only removes the binding.
+
+When loading bindings, instead of determining the class name from file name via conventions, the program could read the class declaration of the file.
