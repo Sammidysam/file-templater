@@ -57,8 +57,8 @@ module FileTemplater
 				# Template    Binding
 				# example     example.rb
 				Terminal::Table.new do |t|
-					templates = list_templates
-					bindings = list_bindings
+					templates = list_templates.sort
+					bindings = list_bindings.sort
 
 					# table header
 					t.add_row ["Template", "Binding"]
