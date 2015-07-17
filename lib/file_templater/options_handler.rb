@@ -52,9 +52,10 @@ module FileTemplater
 				o.separator ""
 				o.separator "Common options:"
 
-				o.on_tail("--verbose", "Run verbosely") do |v|
-                    @verbose = true
-                end
+				o.on_tail("-v", "--version", "Display the version") do
+					puts VERSION
+					exit
+				end
 
 				o.on_tail("-h", "--help", "Show this message") do
 					puts o
