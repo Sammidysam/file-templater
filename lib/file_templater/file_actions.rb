@@ -95,7 +95,6 @@ module FileTemplater
 				end
 			end
 
-			private
 			def unique_directory_list(path)
 				Dir.entries(path).reject { |d| d == "." || d == ".." }
 			end
