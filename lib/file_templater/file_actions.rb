@@ -16,12 +16,28 @@ module FileTemplater
 				type = File.directory?(expanded) ? :directory : (expanded.end_with?(".rb") ? :binding : :file)
 				hub = (type == :binding ? :binding : :template)
 
-				# If the file we are adding is a single file,
-				# make a directory and put the file in it.
 				if type == :file
+					# If the file we are adding is a single file,
+                    # make a directory and put the file in it.
 					expanded_sans_extension = File.join(HUBS[hub], File.basename(expanded, ".*"))
 					FileUtils.mkdir(expanded_sans_extension)
 					FileUtils.copy_entry(expanded, File.join(expanded_sans_extension, File.basename(expanded)))
+				elsif type == :binding
+					# If we are adding a binding,
+					# we need to modify the code to work with our system.
+					output_file = File.open(File.join(HUBS[hub], File.basename(expanded)), "w")
+
+					output_file.print "module Bindings\n"
+					File.open(expanded, "r").each do |line|
+						if line.lstrip.start_with?("class ")
+							output_file.print(line.chomp + " < Binding\n")
+						else
+							output_file.print line
+						end
+					end
+					output_file.print "end\n"
+
+					output_file.close
 				else
 					FileUtils.copy_entry(expanded, File.join(HUBS[hub], File.basename(expanded)))
 				end
