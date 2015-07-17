@@ -13,7 +13,7 @@ $ template -t gem # loads template gem into current directory
 $ template -t gem rails # does same as previous line, but passes an argument "rails" to the gem template binding
 $ template -t gem -m # does not evaluate the template gem, but copies the source into the current directory
 $ template -c gem # copies the template gem source and its corresponding binding into the current directory
-$ template -a c -b c.rb # adds the template c (probably a directory, but could be a file) into the template directory, as well as a corresponding binding c.rb into the binding directory
+$ template -a c,c.rb # adds the template c (probably a directory, but could be a file) into the template directory, as well as a corresponding binding c.rb into the binding directory
 $ template -r c # removes the template c and/or the binding c.rb
 $ template -l # lists the templates and bindings that are saved and able to be used
 ```
@@ -30,7 +30,7 @@ File Templater is best used with the command-line, but the binary file is made t
 The binary file is named `template`.
 If this conflicts with any other program, do open an issue, as I am willing to change it.
 For me at least, it conflicts with nothing.
-The command-line interface allows for the standard switches for help and displaying the version, `-h`, `--help`, `-v`, and `--version`, as well as seven other custom switches.
+The command-line interface allows for the standard switches for help and displaying the version, `-h`, `--help`, `-v`, and `--version`, as well as six other custom switches.
 
 `-t` is used to load a template to be loaded into the current directory.
 It expects only a single argument of the name of the template to load.
@@ -38,17 +38,13 @@ If you want to load multiple templates, you will need to run the program multipl
 If the template is a file, the file will be copied into the current directory.
 If the template is a folder, the contents of the folder, but not the folder itself, will be copied into the current directory.
 
-`-a` is used to add a template to the templates directory.
-Files or folders can be added using this switch.
-It can take a single argument or multiple arguments, and files and folders being added are expected to be in the current directory.
-
-*remove this command*
-`-b` is used to add a binding to the bindings directory.
-A file ending in `.rb` is expected as the argument, though a list of files can be given as well.
-To be used with a template, the file name minus the extension must match the template folder name or template file name minus its extension **exactly**.
-If the names do not match, the binding will not be loaded for use with the template source, which could cause errors upon loading the template.
-As well as that, the class name inside of the binding file must follow the UpperCamelCase conventions.
-For more information about formats of binding files, read the bindings section below.
+`-a` is used to add a template to the templates directory or a binding to the bindings directory.
+When given a directory, the directory will be treated as a template and copied to the templates directory.
+When given a file, the file will be treated as a binding if it ends in `.rb` and a template otherwise.
+If it is treated as a template, the template will be named the file name without its extension.
+If your template name plans to end in `.rb`, create a folder for it before adding it so that it is not incorrectly treated as a binding.
+Read the bindings section below to learn more about acceptable rules of binding files.
+This switch can take a single argument or multiple arguments, and files and folders being added are expected to be in the current directory.
 
 `-r` removes the template and/or the binding of the given argument or list of arguments.
 The `.rb` extension will be automatically added to the argument(s) when finding the binding file.
@@ -86,7 +82,12 @@ It will then change its name based on the parameters given to the program.
 
 ## Bindings
 
-Nothing special needs to be added to a binding file, as the program will automatically add the necessary repetitive code to the file to make it work within the program better.
+To be used with a template, the name of the binding file without the `.rb` extension must match the template name **exactly**.
+If they do not match, the binding file will not be loaded when the template file is loaded.
+The name of the class within the binding file must follow UpperCamelCase conventions and must match the template name.
+For example, if your template is named `jazz_combo`, your binding class will be named `JazzCombo`.
+
+Nothing special needs to be added to a binding file before adding it with `-a`, as the program will automatically add the necessary repetitive code to the file to make it work within the program better.
 The constructor of the binding file will be passed the arguments that are passed to the program without any switches.
 This allows for command-line arguments changing the outputs of templates.
 An example of a binding file is below.
