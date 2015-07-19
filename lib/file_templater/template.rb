@@ -41,7 +41,7 @@ module FileTemplater
 			variables = file.scan(/{{([^}]*)}}/).flatten
 
 			variables.each do |v|
-				file.sub!("{{#{v}}}", @bind.send(v))
+				file.sub!("{{#{v}}}", @bind.get_binding.eval(v))
 			end
 
 			file.end_with?(".erb") ? File.basename(file, ".*") : file
