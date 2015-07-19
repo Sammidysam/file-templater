@@ -38,6 +38,9 @@ module FileTemplater
 					output_file.print "end\n"
 
 					output_file.close
+
+					# We will save the original file just in case.
+					FileUtils.copy_entry(expanded, File.join(HUBS[:original], File.basename(expanded)))
 				else
 					FileUtils.copy_entry(expanded, File.join(HUBS[hub], File.basename(expanded)))
 				end
@@ -49,6 +52,7 @@ module FileTemplater
 
 				# Remove the associated binding.
 				FileUtils.remove_file(File.join(HUBS[:binding], path + ".rb"), true)
+				FileUtils.remove_file(File.join(HUBS[:original], path + ".rb"), true)
 			end
 
 			def list

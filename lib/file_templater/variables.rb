@@ -5,6 +5,7 @@ module FileTemplater
 	HUBS = {
 		:main => File.join(Dir.home, ".templater"),
 		:template => File.join(Dir.home, ".templater", "templates"),
-		:binding => File.join(Dir.home, ".templater", "bindings")
+		:binding => File.join(Dir.home, ".templater", "bindings"),
+		:original => File.join(Dir.home, ".templater", "original")
 	}
 end
