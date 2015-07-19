@@ -73,6 +73,11 @@ module FileTemplater
 				arguments = a[1]
 
 				case command
+				when :template
+					# arguments is the template name,
+					# @arguments are the extraneous arguments
+					template = Template.new(arguments, @arguments)
+					template.load
 				when :add
 					arguments.each do |ar|
 						FileActions.add(ar)
