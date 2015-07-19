@@ -30,7 +30,7 @@ module FileTemplater
 					output_file.print "module Bindings\n"
 					File.open(expanded, "r").each do |line|
 						if line.lstrip.start_with?("class ")
-							output_file.print(line.chomp + "def get_binding\nbinding\nend\n")
+							output_file.print(line + "def get_binding\nbinding\nend\n")
 						else
 							output_file.print line
 						end
