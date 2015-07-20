@@ -101,6 +101,8 @@ end
 ```
 
 Then, when you load the template `gem`, you can use the variable `@name` in your templates.
+The value will be the capitalized version of the first argument passed to the template.
+In the Quick Usage section above, when running the command `template -t gem rails`, `@name` would be equal to `Rails`.
 
 When a binding file like this is added, the code is changed to make it function within the program better.
 The entire code is wrapped within a `module Bindings` at the beginning and the corresponding `end` at the end.
