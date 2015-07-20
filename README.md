@@ -59,11 +59,12 @@ The list return will be sorted alphabetically to better help determine what is w
 The `.erb` extensions will not be removed from the resulting files either.
 This is useful for loading a template that contains ERB code.
 
-`-c` will copy a template and binding of its argument or a list of arguments to the current directory.
-This is useful for editing a template; you can copy it with `-c`, make modifications, remove it from the directory with `-r`, then add it again with `-a` and `-b`.
+`-c` will copy a template or binding of its argument or a list of arguments to the current directory.
+Like `-a`, arguments ending in `.rb` will be assumed to be bindings and all else will be assumed to be templates.
+However, even after assuming an argument designates a binding, if copying the binding fails it will try to fallback to a template with a `.rb` extension.
+This is useful for editing a template; you can copy it with `-c`, make modifications, remove it from the loaded directory with `-r`, then add it again with `-a`.
 Rather than when loading a template, this command will copy the template directory, not its contents, into the current directory.
-Note that the binding file will contain more code that you inputted it as, as code will be added to the binding file as you are adding it.
-See the binding section below to see what code is added.
+When a binding is copied, it will be copied into the current directory.
 
 Any arguments outside of those provided as part of a switch become passed to the binding file associated with the loaded template.
 See the section on bindings below to find out more information about how using those arguments works.
