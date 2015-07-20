@@ -103,6 +103,7 @@ end
 Then, when you load the template `gem`, you can use the variable `@name` in your templates.
 
 When a binding file like this is added, the code is changed to make it function within the program better.
-The entire code is wrapped within a `module Bindings` at the beginning and the corresponding `end` at the end, and the class statement goes from `class X` to `class X < Binding`, with `X` changing to be the name of the class.
-The `Binding` class handles adding a `get_binding` method to all of the binding classes, which allows what ERB wants to handle to be retrieved easily.
-Putting all of the binding classes within a module simply prevents as many naming conflicts when the classes are loaded.
+The entire code is wrapped within a `module Bindings` at the beginning and the corresponding `end` at the end.
+A method within the class is defined, `get_binding`.
+This method is used to get the context of the provided class.
+Putting all of the binding classes within a module, here named `Bindings`, simply prevents as many naming conflicts when the classes are loaded.
