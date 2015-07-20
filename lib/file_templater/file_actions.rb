@@ -18,7 +18,7 @@ module FileTemplater
 
 				if type == :file
 					# If the file we are adding is a single file,
-                    # make a directory and put the file in it.
+					# make a directory and put the file in it.
 					expanded_sans_extension = File.join(HUBS[hub], File.basename(expanded, ".*"))
 					FileUtils.mkdir(expanded_sans_extension)
 					FileUtils.copy_entry(expanded, File.join(expanded_sans_extension, File.basename(expanded)))
