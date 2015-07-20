@@ -21,8 +21,9 @@ $ template -l # lists the templates and bindings that are saved and able to be u
 ## File Structure
 
 When you run File Templater for the first time, it creates some files in order to store templates and bindings.
-The folders it creates are `~/.templater`, `~/.templater/bindings`, and `~/.templater/templates`.
+The folders it creates are `~/.templater`, `~/.templater/bindings`, `~/.templater/templates`, and `~/.templater/original`.
 As is probably expected, binding files are saved into `~/.templater/bindings` and template folders or files are saved into `~/.templater/templates`.
+The original binding files without any modification are saved into `~/.templater/original` so that the original files can be retrieved.
 
 ## Command-Line Interface
 
