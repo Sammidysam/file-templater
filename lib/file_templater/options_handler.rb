@@ -23,8 +23,8 @@ module FileTemplater
 					@actions << [:add, t]
 				end
 
-				o.on("-r", "--remove TEMPLATE", Array,
-					 "Removes template or binding TEMPLATE") do |tb|
+				o.on("-r", "--remove THING", Array,
+					 "Removes template or binding THING") do |tb|
 					@actions << [:remove, tb]
 				end
 
