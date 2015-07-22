@@ -53,7 +53,7 @@ module FileTemplater
 				o.separator "Common options:"
 
 				o.on_tail("-v", "--version", "Display the version") do
-					puts VERSION
+					puts "File Templater (template) version " + VERSION
 					exit
 				end
 
