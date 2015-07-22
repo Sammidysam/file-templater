@@ -47,9 +47,11 @@ If your template name plans to end in `.rb`, create a folder for it before addin
 Read the bindings section below to learn more about acceptable rules of binding files.
 This switch can take a single argument or multiple arguments, and files and folders being added are expected to be in the current directory.
 
-`-r` removes the template and/or the binding of the given argument or list of arguments.
-The `.rb` extension will be automatically added to the argument(s) when finding the binding file.
-So, if you have a lone binding `hi.rb` sitting around, you can remove it with `template -r hi`.
+`-r` removes the template or the binding of the given argument or list of arguments.
+Like `-a`, this command assumes that arguments ending in `.rb` are bindings and those not are templates.
+However, if a binding of the argument does not exist, the template by the same name will try to be deleted.
+This allows removing templates ending in `.rb`.
+To remove a template and a binding, you will need to give the `-r` two arguments similar to when using `-a`.
 
 `-l` lists all of the templates and bindings, as well as indicates whether a template or binding does not have a match.
 This can be useful for debugging name mismatches.
