@@ -39,7 +39,7 @@ module FileTemplater
 
 				o.on("-m", "--no-modify",
 					 "Prevents modifying the template source",
-					 "when inserting") do
+					 "when loading") do
 					@actions << [:nomodify]
 				end
 
