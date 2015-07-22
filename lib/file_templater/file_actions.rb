@@ -98,7 +98,7 @@ module FileTemplater
 			def require_all_bindings
 				unique_directory_list(HUBS[:binding]).each do |f|
 					if f.end_with?(".rb")
-						require File.join(HUBS[:binding], f.chomp(".rb"))
+						require File.join(HUBS[:binding], f)
 					end
 				end
 			end
