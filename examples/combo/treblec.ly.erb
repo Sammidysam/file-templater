@@ -1,0 +1,23 @@
+trebleCNotes = \relative c' {
+	\clef treble
+
+	\<%= @variable_prefix %>Notes
+}
+
+\book {
+	\bookOutputSuffix "treblec"
+	\header {
+		instrument = "Treble C"
+	}
+
+	\score {
+		<<
+			\new ChordNames {
+				\set chordChanges = ##t
+				\<%= @variable_prefix %>Chords
+			}
+
+			\trebleCNotes
+		>>
+	}
+}

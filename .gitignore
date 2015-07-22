@@ -35,6 +35,4 @@ build/
 .rvmrc
 
 # This is my test template and other test stuff:
-combo/
-combo.rb
 testload/

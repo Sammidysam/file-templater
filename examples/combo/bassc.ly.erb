@@ -1,0 +1,23 @@
+bassCNotes = \relative c {
+	\clef bass
+
+	\<%= @variable_prefix %>Notes
+}
+
+\book {
+	\bookOutputSuffix "bassc"
+	\header {
+		instrument = "Bass C"
+	}
+
+	\score {
+		<<
+			\new ChordNames {
+				\set chordChanges = ##t
+				\<%= @variable_prefix %>Chords
+			}
+
+			\bassCNotes
+		>>
+	}
+}

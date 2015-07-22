@@ -1,0 +1,23 @@
+eFlatNotes = \transpose c a \relative c' {
+	\clef treble
+
+	\<%= @variable_prefix %>Notes
+}
+
+\book {
+	\bookOutputSuffix "eflat"
+	\header {
+		instrument = "E Flat"
+	}
+
+	\score {
+		<<
+			\new ChordNames {
+				\set chordChanges = ##t
+				\transpose c a { \<%= @variable_prefix %>Chords }
+			}
+
+			\eFlatNotes
+		>>
+	}
+}

@@ -1,0 +1,23 @@
+bFlatNotes = \transpose c d \relative c' {
+	\clef treble
+
+	\<%= @variable_prefix %>Notes
+}
+
+\book {
+	\bookOutputSuffix "bflat"
+	\header {
+		instrument = "B Flat"
+	}
+
+	\score {
+		<<
+			\new ChordNames {
+				\set chordChanges = ##t
+				\transpose c d { \<%= @variable_prefix %>Chords }
+			}
+
+			\bFlatNotes
+		>>
+	}
+}

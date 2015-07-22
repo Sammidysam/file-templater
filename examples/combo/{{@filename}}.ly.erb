@@ -1,0 +1,29 @@
+\version "<%= @version %>"
+
+\header {
+	title = "<%= @tune %>"
+<% if @composer %>
+	composer = "<%= @composer %>"
+<% end %>
+<% if @arranger %>
+	arranger = "<%= @arranger %>"
+<% end %>
+}
+
+<%= @variable_prefix %>Key = { \key  }
+<%= @variable_prefix %>Time = { \time 4/4 }
+
+<%= @variable_prefix %>Chords = \chordmode {
+
+}
+
+<%= @variable_refix %>Notes = {
+
+
+	\bar "|."
+}
+
+\include "eflat.ly"
+\include "treblec.ly"
+\include "bassc.ly"
+\include "bflat.ly"
