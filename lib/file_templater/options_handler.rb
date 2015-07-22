@@ -1,6 +1,8 @@
 module FileTemplater
 	class OptionsHandler
 		def initialize(argv)
+			@nomodify = false
+
 			@actions = []
 
 			parser = OptionParser.new do |o|
@@ -35,7 +37,7 @@ module FileTemplater
 				o.on("-m", "--no-modify",
 					 "Prevents modifying the template source",
 					 "when loading") do
-					@actions << [:nomodify]
+					@nomodify = true
 				end
 
 				o.on("-c", "--copy TEMPLATE", Array,
@@ -71,7 +73,7 @@ module FileTemplater
 				when :template
 					# arguments is the template name,
 					# @arguments are the extraneous arguments
-					template = Template.new(arguments, @arguments)
+					template = Template.new(arguments, @arguments, nomodify: @nomodify)
 					template.load
 				when :add
 					arguments.each do |ar|

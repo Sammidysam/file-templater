@@ -1,8 +1,13 @@
 module FileTemplater
 	class Template
-		def initialize(template, arguments, bind = nil)
+		# options can include:
+		# bind: which binding rather than the default to use
+		# nomodify: if the template ERB will be loaded or not
+		def initialize(template, arguments, options = {})
+			@nomodify = options[:nomodify]
+
 			@template = File.join(HUBS[:template], template)
-			binding_string = bind || template + ".rb"
+			binding_string = options[:bind] || template + ".rb"
 			binding_string = File.basename(binding_string, ".*")
 
 			# Convert binding_string to a class object.
@@ -20,7 +25,7 @@ module FileTemplater
 				if File.directory?(f)
 					self.load f
 				else
-					if f.end_with?(".erb")
+					if !@nomodify && f.end_with?(".erb")
 						output_file = File.open(File.join(Dir.pwd, transform_file_name(short_name)), "w")
 
 						input_file = File.open(f, "r")
@@ -44,7 +49,7 @@ module FileTemplater
 				file.sub!("{{#{v}}}", @bind.get_binding.eval(v))
 			end
 
-			file.end_with?(".erb") ? File.basename(file, ".*") : file
+			!@nomodify && file.end_with?(".erb") ? File.basename(file, ".*") : file
 		end
 	end
 end
