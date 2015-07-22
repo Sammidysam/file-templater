@@ -1,10 +1,5 @@
 module FileTemplater
 	class OptionsHandler
-		# The actions to do.
-		attr_reader :actions
-		# The arguments that will be passed to the library.
-		attr_reader :arguments
-
 		def initialize(argv)
 			@actions = []
 
