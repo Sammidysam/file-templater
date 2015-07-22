@@ -47,12 +47,21 @@ module FileTemplater
 			end
 
 			def remove(path)
-				# Remove the associated template.
-				FileUtils.remove_dir(File.join(HUBS[:template], path), true)
+				removing_template = !path.end_with?(".rb")
 
-				# Remove the associated binding.
-				FileUtils.remove_file(File.join(HUBS[:binding], path + ".rb"), true)
-				FileUtils.remove_file(File.join(HUBS[:original], path + ".rb"), true)
+				unless removing_template
+					# Remove the associated binding.
+					begin
+						FileUtils.remove_file(File.join(HUBS[:binding], path))
+						FileUtils.remove_file(File.join(HUBS[:original], path))
+					rescue StandardError
+						# If we failed to remove one of these files, try to remove a template by the same name.
+						removing_template = true
+					end
+				end
+
+				# Remove the associated template.
+				FileUtils.remove_dir(File.join(HUBS[:template], path), true) if removing_template
 			end
 
 			def list
