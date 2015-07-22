@@ -22,7 +22,7 @@ module FileTemplater
 
 				o.on("-a", "--add THING", Array,
 					 "Add THING, a template or a binding,",
-					 "to the template directory") do |t|
+					 "to the template or binding directory") do |t|
 					@actions << [:add, t]
 				end
 
