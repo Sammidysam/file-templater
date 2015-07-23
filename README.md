@@ -76,6 +76,7 @@ See the section on bindings below to find out more information about how using t
 Templates can either be one file or multiple files.
 The files can either be directly copied (have no `.erb` suffix) or be ERB templates (have a `.erb` suffix).
 If a `.erb` suffix is present, it will be removed when the file is finished being copied and transformed.
+ERB is run with a trim mode of `<>`, which means that newlines will be omitted around ERB code.
 Binding files are used to manage how data is provided to template.
 Read the section about them below to learn more about them.
 
