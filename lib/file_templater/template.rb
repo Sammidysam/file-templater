@@ -8,12 +8,16 @@ module FileTemplater
 
 			@template = File.join(HUBS[:template], template)
 			binding_string = options[:bind] || template + ".rb"
-			binding_string = File.basename(binding_string, ".*")
+			using_template = File.exist?(File.join(HUBS[:binding], binding_string))
 
-			# Convert binding_string to a class object.
-			binding_string = "Bindings::" + binding_string.split("_").map { |w| w.capitalize }.join
-			binding_class = Object.const_get(binding_string)
-			@bind = binding_class.new(*arguments)
+			if using_template
+				binding_string = File.basename(binding_string, ".*")
+
+				# Convert binding_string to a class object.
+				binding_string = "Bindings::" + binding_string.split("_").map { |w| w.capitalize }.join
+				binding_class = Object.const_get(binding_string)
+				@bind = binding_class.new(*arguments)
+			end
 		end
 
 		def load(folder = @template)
@@ -29,7 +33,7 @@ module FileTemplater
 						output_file = File.open(File.join(Dir.pwd, transform_file_name(short_name)), "w")
 
 						input_file = File.open(f, "r")
-						output_file.print(ERB.new(input_file.read, nil, "<>").result(@bind.get_binding))
+						output_file.print(ERB.new(input_file.read, nil, "<>").result(@bind && @bind.get_binding))
 						input_file.close
 
 						output_file.close
