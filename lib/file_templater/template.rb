@@ -29,7 +29,7 @@ module FileTemplater
 						output_file = File.open(File.join(Dir.pwd, transform_file_name(short_name)), "w")
 
 						input_file = File.open(f, "r")
-						output_file.print(ERB.new(input_file.read).result(@bind.get_binding))
+						output_file.print(ERB.new(input_file.read, nil, "<>").result(@bind.get_binding))
 						input_file.close
 
 						output_file.close
