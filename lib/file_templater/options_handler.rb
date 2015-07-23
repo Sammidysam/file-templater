@@ -85,6 +85,10 @@ module FileTemplater
 					end
 				when :list
 					puts FileActions.list
+				when :copy
+					arguments.each do |ar|
+						FileActions.copy(ar)
+					end
 				end
 			end
 		end

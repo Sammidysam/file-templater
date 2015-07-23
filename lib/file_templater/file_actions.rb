@@ -91,6 +91,18 @@ module FileTemplater
 				end
 			end
 
+			def copy(path)
+				if File.exist?(path)
+					puts "A file of this name already exists.\nPlease remove it, or else this command will not work."
+					return
+				end
+
+				# This code is very similar to that of remove.
+				copying_template = !(path.end_with?(".rb") && File.exist?(File.join(HUBS[:binding], path)))
+
+				FileUtils.copy_entry(File.join(HUBS[copying_template ? :template : :original], path), path)
+			end
+
 			def combined_list
 				list_templates + list_bindings
 			end
