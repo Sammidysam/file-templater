@@ -6,7 +6,7 @@ module FileTemplater
 			@actions = []
 
 			parser = OptionParser.new do |o|
-				o.banner = "Usage: template [options]"
+				o.banner = "Usage: template [options] [binding arguments]"
 
 				o.separator ""
 				o.separator "Specific options:"
