@@ -1,0 +1,19 @@
+PATH
+  remote: .
+  specs:
+    file_templater (0.0.0)
+      terminal-table (~> 1.5)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    terminal-table (1.5.2)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  file_templater!
+
+BUNDLED WITH
+   1.10.5

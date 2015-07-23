@@ -14,4 +14,6 @@ Gem::Specification.new do |s|
     s.homepage = "https://github.com/Sammidysam/file_templater"
     s.files = Dir.glob("lib/**/*.rb") << "bin/template"
     s.executables << "template"
+
+	s.add_runtime_dependency "terminal-table", ["~> 1.5"]
 end
