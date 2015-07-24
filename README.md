@@ -114,3 +114,8 @@ The entire code is wrapped within a `module Bindings` at the beginning and the c
 A method within the class is defined, `get_binding`.
 This method is used to get the context of the provided class.
 Putting all of the binding classes within a module, here named `Bindings`, simply prevents as many naming conflicts when the classes are loaded.
+
+## License
+
+This project is licensed under the GNU General Public License version 3.
+There is a license file in this repository that you can look at to learn more about the conditions.
