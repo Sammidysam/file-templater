@@ -2,6 +2,7 @@ module FileTemplater
 	class OptionsHandler
 		def initialize(argv)
 			@nomodify = false
+			@binding = nil
 
 			@actions = []
 
@@ -15,6 +16,12 @@ module FileTemplater
 					 "Load TEMPLATE to insert",
 					 "into the current directory") do |t|
 					@actions << [:template, t]
+				end
+
+				o.on("-b", "--binding BINDING",
+					 "Load BINDING as the binding",
+					 "for the loaded template") do |b|
+					@binding = b
 				end
 
 				o.on("-a", "--add THING", Array,
@@ -73,7 +80,7 @@ module FileTemplater
 				when :template
 					# arguments is the template name,
 					# @arguments are the extraneous arguments
-					template = Template.new(arguments, @arguments, nomodify: @nomodify)
+					template = Template.new(arguments, @arguments, nomodify: @nomodify, bind: @binding)
 					template.load
 				when :add
 					arguments.each do |ar|
