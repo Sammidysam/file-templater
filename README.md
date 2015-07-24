@@ -39,6 +39,10 @@ If you want to load multiple templates, you will need to run the program multipl
 If the template is a file, the file will be copied into the current directory.
 If the template is a folder, the contents of the folder, but not the folder itself, will be copied into the current directory.
 
+`-b` is used to load a binding other than the default for the template loaded with `-t`.
+It expects a single argument of the binding to load.
+The binding name should end in `.rb`.
+
 `-a` is used to add a template to the templates directory or a binding to the bindings directory.
 When given a directory, the directory will be treated as a template and copied to the templates directory.
 When given a file, the file will be treated as a binding if it ends in `.rb` and a template otherwise.
