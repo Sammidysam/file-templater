@@ -47,10 +47,12 @@ module FileTemplater
 		# Expands the variable-in-file-name notation.
 		# file is expected to be a short name
 		def transform_file_name(file)
-			variables = file.scan(/{{([^}]*)}}/).flatten
+			if @bind
+				variables = file.scan(/{{([^}]*)}}/).flatten
 
-			variables.each do |v|
-				file.sub!("{{#{v}}}", @bind.get_binding.eval(v))
+				variables.each do |v|
+					file.sub!("{{#{v}}}", @bind.get_binding.eval(v))
+				end
 			end
 
 			!@nomodify && file.end_with?(".erb") ? File.basename(file, ".*") : file
