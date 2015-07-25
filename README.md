@@ -93,8 +93,6 @@ It will then change its name based on the parameters given to the program.
 
 To be used with a template, the name of the binding file without the `.rb` extension must match the template name **exactly**.
 If they do not match, the binding file will not be loaded when the template file is loaded.
-The name of the class within the binding file must follow UpperCamelCase conventions and must match the template name.
-For example, if your template is named `jazz_combo`, your binding class will be named `JazzCombo`.
 
 Nothing special needs to be added to a binding file before adding it with `-a`, as the program will automatically add the necessary repetitive code to the file to make it work within the program better.
 The constructor of the binding file will be passed the arguments that are passed to the program without any switches.

@@ -119,6 +119,16 @@ module FileTemplater
 				require File.join(HUBS[:binding], bind)
 			end
 
+			# Returns the first class name in file.
+			def get_class_name(file)
+				File.open(file, "r").each do |line|
+					# The name will be the second word of the class statement.
+                    if line.lstrip.start_with?("class ")
+						return line.split(" ")[1]
+                    end
+                end
+            end
+
 			def unique_directory_list(path)
 				Dir.entries(path).reject { |d| d == "." || d == ".." }
 			end

@@ -8,17 +8,16 @@ module FileTemplater
 
 			@template = File.join(HUBS[:template], template)
 			binding_string = options[:bind] || template + ".rb"
-			using_binding = File.exist?(File.join(HUBS[:binding], binding_string))
+			binding_file = File.join(HUBS[:binding], binding_string)
+			using_binding = File.exist?(binding_file)
 
 			if using_binding
 				# Load the binding.
                 FileActions.require_binding(binding_string)
 
-				binding_string = File.basename(binding_string, ".*")
-
-				# Convert binding_string to a class object.
-				binding_string = "Bindings::" + binding_string.split("_").map { |w| w.capitalize }.join
-				binding_class = Object.const_get(binding_string)
+				# Get the binding class name from the binding file,
+				# and create an instance of it.
+				binding_class = Object.const_get("Bindings::" + FileActions.get_class_name(binding_file))
 				@bind = binding_class.new(*arguments)
 			end
 		end
