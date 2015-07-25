@@ -11,6 +11,9 @@ module FileTemplater
 			using_binding = File.exist?(File.join(HUBS[:binding], binding_string))
 
 			if using_binding
+				# Load the binding.
+                FileActions.require_binding(binding_string)
+
 				binding_string = File.basename(binding_string, ".*")
 
 				# Convert binding_string to a class object.
