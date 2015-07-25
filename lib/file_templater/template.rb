@@ -23,6 +23,8 @@ module FileTemplater
 		end
 
 		def load(folder = @template)
+			FileUtils.mkdir(File.basename(folder)) unless folder == @template
+
 			FileActions.unique_directory_list(folder).each do |f|
 				# We need the whole path to f, but we will keep the short name.
 				short_name = f
