@@ -1,9 +1,10 @@
 class Combo
 	def initialize(tune, composer = nil, arranger = nil)
 		@tune = tune
-		@variable_prefix = tune.downcase.split(" ").map { |w| w.capitalize }.join
+		clean_tune = tune.gsub(/[^(A-z| )]/, "")
+		@variable_prefix = clean_tune.downcase.split(" ").map { |w| w.capitalize }.join
 		@variable_prefix[0] = @variable_prefix[0].downcase
-		@filename = tune.downcase.split(" ").join("-")
+		@filename = clean_tune.downcase.split(" ").join("-")
 
 		@composer = composer
 		@arranger = arranger
