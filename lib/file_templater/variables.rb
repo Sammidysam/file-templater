@@ -1,5 +1,5 @@
 module FileTemplater
-	VERSION = "0.1.1"
+	VERSION = "0.1.2"
 
 	# The hub is where we store our templates and bindings.
 	HUBS = {
