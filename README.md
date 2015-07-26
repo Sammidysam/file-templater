@@ -6,15 +6,21 @@ One of the closest projects I found did not have much of a command-line interfac
 The other really close project was not a gem and did not allow quite as much complexity as I would hope for.
 I was looking for a simpler system that still allowed for a high level of complexity.
 
+## Install
+
+```bash
+$ gem install file_templater
+```
+
 ## Quick Usage Example
 
 ```bash
 $ template -t gem # loads template gem into current directory
 $ template -t gem rails # does same as previous line, but passes an argument "rails" to the gem template binding
 $ template -t gem -m # does not evaluate the template gem, but copies the source into the current directory
-$ template -c gem # copies the template gem source and its corresponding binding into the current directory
+$ template -c gem,gem.rb # copies the template gem source folder and its corresponding binding into the current directory
 $ template -a c,c.rb # adds the template c (probably a directory, but could be a file) into the template directory, as well as a corresponding binding c.rb into the binding directory
-$ template -r c # removes the template c and/or the binding c.rb
+$ template -r c # removes the template c
 $ template -l # lists the templates and bindings that are saved and able to be used
 ```
 
