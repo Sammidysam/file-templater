@@ -58,11 +58,16 @@ module FileTemplater
 
 				o.on_tail("-v", "--version", "Display the version") do
 					puts "File Templater (template) version " + VERSION
+					puts
+					puts "Copyright (C) 2015 Sam Craig"
+					puts "Licensed under the GNU General Public License version 3."
+
 					exit
 				end
 
 				o.on_tail("-h", "--help", "Show this message") do
 					puts o
+
 					exit
 				end
 			end
