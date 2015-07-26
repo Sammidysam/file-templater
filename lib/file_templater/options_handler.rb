@@ -85,6 +85,9 @@ module FileTemplater
 		end
 
 		def process_actions
+			# All actions should be unique.
+			@actions.uniq!
+
 			@actions.each do |a|
 				command = a.first
 				arguments = a[1]
