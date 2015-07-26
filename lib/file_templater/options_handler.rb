@@ -47,8 +47,8 @@ module FileTemplater
 					@nomodify = true
 				end
 
-				o.on("-c", "--copy TEMPLATE", Array,
-					 "Copies TEMPLATE and corresponding binding",
+				o.on("-c", "--copy THING", Array,
+					 "Copies THING, a template or binding,",
 					 "into current directory") do |tb|
 					@actions << [:copy, tb]
 				end
