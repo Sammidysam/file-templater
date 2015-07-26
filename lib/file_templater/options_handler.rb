@@ -2,6 +2,9 @@ module FileTemplater
 	class OptionsHandler
 		def initialize(argv)
 			@nomodify = false
+
+			# Commands that can only be run once.
+			@template = nil
 			@binding = nil
 
 			@actions = []
@@ -15,12 +18,17 @@ module FileTemplater
 				o.on("-t", "--template TEMPLATE",
 					 "Load TEMPLATE to insert",
 					 "into the current directory") do |t|
-					@actions << [:template, t]
+					can_only_be_used_once @template, "-t"
+
+					@actions << [:template]
+					@template = t
 				end
 
 				o.on("-b", "--binding BINDING",
 					 "Load BINDING as the binding",
 					 "for the loaded template") do |b|
+					can_only_be_used_once @binding, "-b"
+
 					@binding = b
 				end
 
@@ -85,7 +93,7 @@ module FileTemplater
 				when :template
 					# arguments is the template name,
 					# @arguments are the extraneous arguments
-					template = Template.new(arguments, @arguments, nomodify: @nomodify, bind: @binding)
+					template = Template.new(@template, @arguments, nomodify: @nomodify, bind: @binding)
 					template.load
 				when :add
 					arguments.each do |ar|
@@ -102,6 +110,14 @@ module FileTemplater
 						FileActions.copy(ar)
 					end
 				end
+			end
+		end
+
+		def can_only_be_used_once(variable, switch)
+			if variable
+				puts "The #{switch} switch can only be used once!"
+
+				exit
 			end
 		end
 	end
