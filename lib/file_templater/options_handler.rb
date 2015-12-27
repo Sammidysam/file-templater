@@ -90,6 +90,12 @@ module FileTemplater
 		end
 
 		def process_actions
+			if @actions.empty?
+				puts @parser
+				puts "\nNo actions were supplied to the program!  The program will not do anything as a result."
+				exit
+			end
+
 			# All actions should be unique.
 			@actions.uniq!
 
