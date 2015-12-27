@@ -9,7 +9,7 @@ module FileTemplater
 
 			@actions = []
 
-			parser = OptionParser.new do |o|
+			@parser = OptionParser.new do |o|
 				o.banner = "Usage: template [options] [binding arguments]"
 
 				o.separator ""
@@ -80,8 +80,13 @@ module FileTemplater
 				end
 			end
 
-			parser.parse!(argv)
-			@arguments = argv
+			if argv.empty?
+				puts @parser
+				exit
+			else
+				@parser.parse!(argv)
+				@arguments = argv
+			end
 		end
 
 		def process_actions
