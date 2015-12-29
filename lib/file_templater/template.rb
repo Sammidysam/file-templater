@@ -23,7 +23,10 @@ module FileTemplater
 		end
 
 		def load(folder = @template)
-			FileUtils.mkdir(File.basename(folder)) unless folder == @template
+			unless folder == @template
+				FileUtils.mkdir(File.basename(folder))
+				puts "Created folder #{folder}"
+			end
 
 			FileActions.unique_directory_list(folder).each do |f|
 				# We need the whole path to f, but we will keep the short name.
@@ -44,6 +47,8 @@ module FileTemplater
 					else
 						FileUtils.copy_entry(f, File.join(Dir.pwd, transform_file_name(short_name)))
 					end
+
+					puts "Created file #{File.join(Dir.pwd, transform_file_name(short_name))}"
 				end
 			end
 		end
