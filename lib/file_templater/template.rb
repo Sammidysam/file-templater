@@ -25,20 +25,19 @@ module FileTemplater
 
 		def load(folder = @template)
 			unless folder == @template
-				FileUtils.mkdir(File.basename(folder))
-				puts "Created folder #{folder}"
+				FileUtils.mkdir(File.join(Dir.pwd, File.basename(folder)))
+				puts "Created folder #{File.join(Dir.pwd, File.basename(folder))}"
 			end
 
 			FileActions.unique_directory_list(folder).each do |f|
-				# We need the whole path to f, but we will keep the short name.
-				short_name = f
 				f = File.join(folder, f)
+				short_path = f.gsub(HUBS[:template] + File::SEPARATOR + @name, "")
 
 				if File.directory?(f)
 					self.load f
 				else
 					if !@nomodify && f.end_with?(".erb")
-						output_file = File.open(File.join(Dir.pwd, transform_file_name(short_name)), "w")
+						output_file = File.open(File.join(Dir.pwd, transform_file_name(short_path)), "w")
 
 						input_file = File.open(f, "r")
 						output_file.print(ERB.new(input_file.read, nil, "<>").result(@bind && @bind.get_binding))
@@ -46,16 +45,15 @@ module FileTemplater
 
 						output_file.close
 					else
-						FileUtils.copy_entry(f, File.join(Dir.pwd, transform_file_name(short_name)))
+						FileUtils.copy_entry(f, File.join(Dir.pwd, transform_file_name(short_path)))
 					end
 
-					puts "Created file #{File.join(Dir.pwd, transform_file_name(short_name))}"
+					puts "Created file #{File.join(Dir.pwd, transform_file_name(short_path))}"
 				end
 			end
 		end
 
 		# Expands the variable-in-file-name notation.
-		# file is expected to be a short name
 		def transform_file_name(file)
 			if @bind
 				variables = file.scan(/{{([^}]*)}}/).flatten
