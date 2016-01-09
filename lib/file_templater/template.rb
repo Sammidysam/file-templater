@@ -4,6 +4,7 @@ module FileTemplater
 		# bind: which binding rather than the default to use
 		# nomodify: if the template ERB will be loaded or not
 		def initialize(template, arguments, options = {})
+			@name = template
 			@nomodify = options[:nomodify]
 
 			@template = File.join(HUBS[:template], template)
