@@ -64,7 +64,7 @@ module FileTemplater
 				end
 			end
 
-			!@nomodify && file.end_with?(".erb") ? File.basename(file, ".*") : file
+			(!@nomodify && file.end_with?(".erb") && !File.directory?(file)) ? File.basename(file, ".*") : file
 		end
 	end
 end
