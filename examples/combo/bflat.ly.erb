@@ -4,6 +4,12 @@ bFlatNotes = \transpose c d \relative c' {
 	\<%= @variable_prefix %>Notes
 }
 
+bFlatUpperNotes = \transpose c d \relative c'' {
+	\clef treble
+
+	\<%= @variable_prefix %>Notes
+}
+
 \book {
 	\bookOutputSuffix "bflat"
 	\header {
@@ -18,6 +24,17 @@ bFlatNotes = \transpose c d \relative c' {
 			}
 
 			\new Voice \bFlatNotes
+		>>
+	}
+
+	\score {
+		<<
+			\new ChordNames {
+				\set chordChanges = ##t
+				\transpose c d { \<%= @variable_prefix %>Chords }
+			}
+
+			\new Voice \bFlatUpperNotes
 		>>
 	}
 }
