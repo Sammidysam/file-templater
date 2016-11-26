@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    file_templater (0.1.2)
+    file_templater (0.1.3)
       terminal-table (~> 1.5)
 
 GEM
